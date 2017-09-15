@@ -16,10 +16,20 @@ const routes = (server) => {
     }
   })
 
+  server.get('category/:id', async (req, res, next) => {
+    const { id } = req.params
+
+    try {
+      res.send(await db.categories().getOne(id))
+      next()
+    } catch (error) {
+      res.send(error)
+      next()
+    }
+  })
+
   server.post('category', async (req, res, next) => {
     const { name } = req.params
-
-    console.log(req)
 
     try {
       res.send(await db.categories().save(name))
@@ -43,7 +53,7 @@ const routes = (server) => {
   })
 
   server.del('category', async (req, res, next) => {
-    const { id } = req.params
+    const { id } = req.query
 
     try {
       res.send(await db.categories().del(id))

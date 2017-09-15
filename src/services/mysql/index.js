@@ -9,7 +9,7 @@ const connection = mysqlServer.createConnection({
 
 const errorHandler = (error, msg, rejectFunction) => {
   console.error(error)
-  rejectFunction({ erorr: msg })
+  rejectFunction({ error: msg })
 }
 
 const categoryModule = require('./categories')({ connection, errorHandler })

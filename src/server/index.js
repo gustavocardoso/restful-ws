@@ -6,6 +6,7 @@ const cors = require('./cors')
 server.pre(cors.preflight)
 server.use(cors.actual)
 server.use(restify.plugins.bodyParser())
+server.use(restify.plugins.queryParser())
 
 routes(server)
 

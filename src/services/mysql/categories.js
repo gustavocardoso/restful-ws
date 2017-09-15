@@ -14,6 +14,27 @@ const categories = deps => {
       })
     },
 
+    getOne: (id) => {
+      return new Promise((resolve, reject) => {
+        const { connection, errorHandler } = deps
+
+        connection.query('SELECT name FROM categories WHERE id = ?', [id], (error, result) => {
+          if (error) {
+            errorHandler(error, `Falha ao bucar categoria com o ID ${id}`, reject)
+            return false
+          }
+
+          if (result.length === 0) {
+            errorHandler(error, 'Falha ao buscar a categoria', reject)
+            return false
+          }
+
+          const name = result[0].name
+          resolve({ name, id })
+        })
+      })
+    },
+
     save: (name) => {
       return new Promise((resolve, reject) => {
         const { connection, errorHandler } = deps
@@ -37,7 +58,7 @@ const categories = deps => {
             errorHandler(error, `Falha ao atualizar a categoria ${name}`, reject)
             return false
           }
-          resolve({ category: { name, id: results.insertId } })
+          resolve({ category: { name, id: id } })
         })
       })
     },
