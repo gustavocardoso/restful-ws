@@ -52,7 +52,15 @@ const routes = (server) => {
   })
 
   server.del('category', async (req, res, next) => {
-    const { id } = req.query
+    let id
+
+    if (req.query.id) {
+      id = req.query.id
+    }
+
+    if (req.params.id) {
+      id = req.params.id
+    }
 
     try {
       res.send(await db.categories().del(id))
