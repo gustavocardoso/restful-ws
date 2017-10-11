@@ -2,10 +2,10 @@ const test = require('ava')
 const { connection, errorHandler } = require('./setup')
 const categories = require('../categories')({ connection, errorHandler })
 
+const create = () => categories.save('category-test')
+
 test.beforeEach(t => connection.query('TRUNCATE TABLE categories'))
 test.after.always(t => connection.query('TRUNCATE TABLE categories'))
-
-const create = () => categories.save('category-test')
 
 test('List categories', async t => {
   await create()

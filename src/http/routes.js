@@ -5,6 +5,17 @@ const routes = (server) => {
     res.send('Enjoy the silence...')
   })
 
+  server.post('auth', async (req, res, next) => {
+    try {
+      const { email, password } = req.params
+      res.send(await db.auth().authenticate(email, password))
+    } catch (error) {
+      res.send(error)
+    }
+
+    next()
+  })
+
   server.get('category', async (req, res, next) => {
     try {
       res.send(await db.categories().all())
