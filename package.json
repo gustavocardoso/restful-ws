@@ -11,6 +11,14 @@
   "keywords": [],
   "author": "Gustavo Cardoso <gustavocardoso@gmail.com> (https://gustavocardoso.me/)",
   "license": "MIT",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "jsonwebtoken": "^8.1.0",
+    "mysql": "^2.14.1",
+    "restify": "^5.1.0",
+    "restify-cors-middleware": "^1.0.1",
+    "sha1": "^1.1.1"
+  },
   "devDependencies": {
     "ava": "^0.22.0",
     "dotenv": "^4.0.0",
