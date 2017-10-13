@@ -11,7 +11,6 @@ const auth = deps => {
 
         connection.query(queryString, queryData, (error, results) => {
           if (error || !results.length) {
-            console.log(error)
             errorHandler(error, 'Falha ao localizar o usuário', reject)
             return false
           }
